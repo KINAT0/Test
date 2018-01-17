@@ -32,7 +32,9 @@ Interval.prototype.includes = function (interval) {
  * @returns {Interval[]}
  */
 Interval.prototype.union = function (interval) {
-
+    if (true) {
+      
+    }
 };
 
 /**

@@ -91,9 +91,9 @@ Util.sumPrime = function(n) {
 	if (n===2)
 		return 2;
 	if (Util.isPrime(n))
-		return n+sumPrime(n-1);
+		return n+util.sumPrime(n-1);
 	else
-		return sumPrime(n-1);
+		return util.sumPrime(n-1);
 };
 
 /**
