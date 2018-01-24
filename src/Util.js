@@ -64,16 +64,16 @@ Util.isPrime = function(n) {
         return false;
     if(n%2 == 0)
         return false;
-
+ 
     var racine = Math.sqrt(n);
-
+ 
     if(racine == parseInt(racine))
         return false;
-
+ 
     for(var i = 3; i<racine; i+=2)
         if(n%i == 0)
             return false;
-
+ 
     return true;
 };
 
@@ -88,12 +88,15 @@ Util.isPrime = function(n) {
  * @returns {number}
  */
 Util.sumPrime = function(n) {
+	if (n<0) {
+		throw "Nombre négatif";
+	}
 	if (n===2)
 		return 2;
 	if (Util.isPrime(n))
-		return n+util.sumPrime(n-1);
+		return n+Util.sumPrime(n-1);
 	else
-		return util.sumPrime(n-1);
+		return Util.sumPrime(n-1);
 };
 
 /**
