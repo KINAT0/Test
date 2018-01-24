@@ -6,8 +6,17 @@ Util = {};
  * @returns {number}
  */
 Util.factorial = function(n) {
-		if (0 === n) {return 1;}
-		return n * Util.factorial(n-1);
+	if (n<0) {
+		throw "Factorielle inférieur à 0";
+	}
+	if (n>=100) {
+		throw "Factorielle supérieur à 100";
+	}
+	if (n === 0){
+		return 1;
+	}
+
+	return n * Util.factorial(n-1);
 };
 
 /**
@@ -18,8 +27,11 @@ Util.factorial = function(n) {
  * @returns {number}
  */
 Util.arrangement = function(n, r) {
+	if (n < r) {
+		throw "n plus petit que r";
+	}
 
-		return Util.factorial(n) / Util.factorial(n-r);
+	return Util.factorial(n) / Util.factorial(n-r);
 };
 
 /**
@@ -30,19 +42,39 @@ Util.arrangement = function(n, r) {
  * @returns {number}
  */
 Util.combination = function(n, r) {
+	if (n < r) {
+		throw "n plus petit que r";
+	}
 
+	return Util.arrangement(n,r)*(1/Util.factorial(r));
 };
 
 /**
  * Détermine si n est un nombre premier.
- * Util.isPrime(5) => false
- * Util.isPrime(6) => true
+ * Util.isPrime(5) => true
+ * Util.isPrime(6) => false
  *
  * @param {number} n
  * @returns {boolean}
  */
 Util.isPrime = function(n) {
-
+    if(n===0 || n===1)
+        return true;
+    if(n == 2)
+        return false;
+    if(n%2 == 0)
+        return false;
+ 
+    var racine = Math.sqrt(n);
+ 
+    if(racine == parseInt(racine))
+        return false;
+ 
+    for(var i = 3; i<racine; i+=2)
+        if(n%i == 0)
+            return false;
+ 
+    return true;
 };
 
 
@@ -56,7 +88,15 @@ Util.isPrime = function(n) {
  * @returns {number}
  */
 Util.sumPrime = function(n) {
-
+	if (n<0) {
+		throw "Nombre négatif";
+	}
+	if (n===2)
+		return 2;
+	if (Util.isPrime(n))
+		return n+Util.sumPrime(n-1);
+	else
+		return Util.sumPrime(n-1);
 };
 
 /**
